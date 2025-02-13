@@ -7,8 +7,8 @@ k.loadSprite("soldier", "./public/assets/sprite/Soldier.png", { // load sprite
   sliceY: 7,
   anims: {
     idle: { from: 0, to: 5, loop: true, speed: 8 },
-    walk: { from: 9, to: 16, loop: true, speed: 8 },
-    attack: { from: 18, to: 23, loop: false, speed: 8 },
+    walk: { from: 9, to: 16, loop: true, speed: 10 },
+    attack: { from: 18, to: 23, loop: false, speed: 30 },
     damage: { from: 45, to: 48, loop: true, speed: 8 },
     death: {from :54, to: 57, loop: true, speed: 8},
   }
@@ -98,6 +98,7 @@ k.scene("main", async () => { // асинхронная функция для с
     k.onKeyDown("left", () => {
       if (!player.isInDialogue) {
         player.move(-player.speed, 0);
+        player.flipX = true;
         if( player.curAnim() !== "walk"){
           player.play("walk");
         }
@@ -107,6 +108,7 @@ k.scene("main", async () => { // асинхронная функция для с
     k.onKeyDown("right", () => {
       if (!player.isInDialogue) {
         player.move(player.speed, 0);
+        player.flipX = false;
         if( player.curAnim() !== "walk"){
           player.play("walk");
         }
